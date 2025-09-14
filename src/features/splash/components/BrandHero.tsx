@@ -37,7 +37,7 @@ export const BrandHero = () => {
       >
         <p className="text-gray-700 text-lg max-w-sm mx-auto leading-relaxed">
           Your <span className="font-semibold text-purple-600">magical</span>{" "}
-          stablecoin wallet. Send, receive, and manage USDC with{" "}
+          stablecoin wallet. <br /> Send, receive, and manage USDC with{" "}
           <span className="font-semibold text-fuchsia-600">delight</span>.
         </p>
       </motion.div>
