@@ -37,15 +37,18 @@ export const TransactionItem: FC<TransactionItemProps> = ({
         boxShadow:
           "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
       }}
-      className="flex items-center justify-between p-5 bg-gradient-to-r from-white via-purple-50/30 to-white rounded-2xl border border-purple-100/50 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 transition-all duration-300 backdrop-blur-sm"
+      className="relative overflow-clip flex items-center justify-between p-4 rounded-2xl border border-purple-100/50 shadow-lg shadow-purple-500/5 hover:shadow-purple-500/10 transition-all duration-300 backdrop-blur-sm"
     >
+      {type === "receive" && (
+        <>
+          <div className="-left-12 top-7 absolute w-24 h-24 bg-[#00A218] opacity-10 rounded-[6rem]" />
+          <div className="-left-10 top-10 absolute w-20 h-20 bg-[#00A218] opacity-10 rounded-[6rem]" />
+          <div className="-left-5 top-13 absolute w-12 h-12 bg-[#00A218] opacity-10 rounded-[6rem]" />
+        </>
+      )}
       <div className="flex items-center space-x-4">
         <motion.div
-          className={`p-3 rounded-2xl shadow-lg ${
-            type === "send"
-              ? "bg-gradient-to-br from-rose-100 to-pink-100 text-rose-600"
-              : "bg-gradient-to-br from-emerald-100 to-green-100 text-emerald-600"
-          }`}
+          className={`p-2 rounded-xl justify-center items-center gap-2.5 shadow-lg bg-[#1C1C1A] text-white`}
           whileHover={{
             scale: 1.1,
             rotate: type === "send" ? 5 : -5,
@@ -53,15 +56,15 @@ export const TransactionItem: FC<TransactionItemProps> = ({
           transition={{ duration: 0.2 }}
         >
           {type === "send" ? (
-            <ArrowUpRight className="w-5 h-5" />
+            <ArrowUpRight className="w-6 h-6" />
           ) : (
-            <ArrowDownLeft className="w-5 h-5" />
+            <ArrowDownLeft className="w-6 h-6" />
           )}
         </motion.div>
 
         <div>
           <div className="flex items-center space-x-3">
-            <span className="font-semibold text-gray-800">
+            <span className="font-bold text-black text-xs">
               {type === "send" ? "Sent to" : "Received from"}
             </span>
             {status === "pending" && (
@@ -82,7 +85,7 @@ export const TransactionItem: FC<TransactionItemProps> = ({
               </motion.span>
             )}
           </div>
-          <div className="text-sm text-gray-600 font-medium mt-1">
+          <div className="text-xs text-[#BABABA] mt-1">
             {formatAddress(address)} • {timestamp}
           </div>
         </div>
@@ -90,10 +93,8 @@ export const TransactionItem: FC<TransactionItemProps> = ({
 
       <div className="text-right">
         <motion.div
-          className={`font-bold text-lg ${
-            type === "send"
-              ? "bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent"
-              : "bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent"
+          className={`font-grotesk font-bold md:text-lg ${
+            type === "send" ? "text-[#B60000]" : "text-[#006810]"
           }`}
           animate={{
             scale: [1, 1.02, 1],
@@ -106,8 +107,16 @@ export const TransactionItem: FC<TransactionItemProps> = ({
         >
           {type === "send" ? "-" : "+"}${amount.toFixed(2)}
         </motion.div>
-        <div className="text-sm font-medium">USDC</div>
+        <div className="text-xs font-semibold">USDC</div>
       </div>
+
+      {type === "send" && (
+        <>
+          <div className="-right-12 bottom-7 absolute w-24 h-24 bg-[#B60000] opacity-10 rounded-[6rem]" />
+          <div className="-right-10 bottom-10 absolute w-20 h-20 bg-[#B60000] opacity-10 rounded-[6rem]" />
+          <div className="-right-5 bottom-13 absolute w-12 h-12 bg-[#B60000] opacity-10 rounded-[6rem]" />
+        </>
+      )}
     </motion.div>
   );
 };

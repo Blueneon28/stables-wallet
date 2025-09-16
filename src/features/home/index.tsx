@@ -19,85 +19,84 @@ export const Home: FC<HomeProps> = ({ onSend, onReceive }) => {
   };
 
   return (
-    <div className="p-6 min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50 relative overflow-hidden">
+    <div className="min-h-screen bg-white relative">
       <Header />
+      <div className="absolute min-h-screen w-full top-15 px-6 py-2 z-20">
+        <Balance onClickHide={handleShowBalance} showBalance={showBalance} />
 
-      <Balance onClickHide={handleShowBalance} showBalance={showBalance} />
-
-      {/* Actions */}
-      <div className="flex space-x-4 my-8">
-        <motion.div
-          whileHover={{
-            scale: 1.05,
-            y: -4,
-            rotateY: 5,
-          }}
-          whileTap={{ scale: 0.95 }}
-          className="flex-1"
-        >
-          <Button
-            onClick={onSend}
-            className="w-full bg-gradient-to-r from-rose-500 via-pink-500 to-fuchsia-500 hover:from-rose-600 hover:via-pink-600 hover:to-fuchsia-600 text-white rounded-2xl h-16 shadow-2xl shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300 text-lg font-semibold"
+        {/* Actions */}
+        <div className="flex space-x-4 my-6">
+          <motion.div
+            whileHover={{
+              scale: 1.05,
+              y: -4,
+              rotateY: 5,
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full justify-between"
           >
-            <motion.div
-              animate={{
-                rotate: [0, 10, -10, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="mr-3"
+            <Button
+              onClick={onSend}
+              className="flex-1 w-full bg-[#1C1C1A] hover:bg-gray-600 text-white text-xl font-bold font-grotesk rounded-full py-4 px-6 h-16 gap-2 transition-all duration-300"
             >
-              <ArrowUpRight className="w-6 h-6" />
-            </motion.div>
-            Send
-            <motion.div
-              animate={{
-                scale: [0, 1, 0],
-                rotate: [0, 180, 360],
-              }}
-              transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-              className="ml-2 w-2 h-2 bg-white rounded-full"
-            />
-          </Button>
-        </motion.div>
+              <motion.div
+                animate={{
+                  rotate: [0, 10, -10, 0],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <ArrowUpRight className="w-6 h-6" />
+              </motion.div>
+              <span className="">Send</span>
+              <motion.div
+                animate={{
+                  scale: [0, 1, 0],
+                  rotate: [0, 180, 360],
+                }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                className="w-2 h-2 bg-white rounded-full"
+              />
+            </Button>
+          </motion.div>
 
-        <motion.div
-          whileHover={{
-            scale: 1.05,
-            y: -4,
-            rotateY: -5,
-          }}
-          whileTap={{ scale: 0.95 }}
-          className="flex-1"
-        >
-          <Button
-            onClick={onReceive}
-            className="w-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white rounded-2xl h-16 shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 text-lg font-semibold"
+          <motion.div
+            whileHover={{
+              scale: 1.05,
+              y: -4,
+              rotateY: -5,
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full justify-between"
           >
-            <motion.div
-              animate={{
-                y: [0, -3, 3, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="mr-3"
+            <Button
+              onClick={onReceive}
+              className="flex-1 w-full bg-[#1C1C1A] hover:bg-gray-600 text-white text-xl font-bold font-grotesk gap-2 rounded-full py-4 px-6 h-16 transition-all duration-300"
             >
-              <ArrowDownLeft className="w-6 h-6" />
-            </motion.div>
-            Receive
-            <motion.div
-              animate={{
-                scale: [0, 1, 0],
-                rotate: [0, -180, -360],
-              }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-              className="ml-2 w-2 h-2 bg-white rounded-full"
-            />
-          </Button>
-        </motion.div>
+              <motion.div
+                animate={{
+                  y: [0, -3, 3, 0],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <ArrowDownLeft className="w-6 h-6" />
+              </motion.div>
+              Receive
+              <motion.div
+                animate={{
+                  scale: [0, 1, 0],
+                  rotate: [0, -180, -360],
+                }}
+                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                className="w-2 h-2 bg-white rounded-full"
+              />
+            </Button>
+          </motion.div>
+        </div>
+
+        <RecentActivity showBalance={showBalance} />
       </div>
-
-      <RecentActivity showBalance={showBalance} />
     </div>
   );
 };

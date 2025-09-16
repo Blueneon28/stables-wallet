@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-grotesk: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -45,7 +47,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.99 0.01 95);
+  --background: white;
   --foreground: oklch(0.15 0.02 250);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.15 0.02 250);
@@ -54,7 +56,7 @@
   --primary: oklch(0.65 0.18 250);
   --primary-foreground: oklch(0.98 0.01 95);
   --secondary: oklch(0.7 0.22 300);
-  --secondary-foreground: oklch(0.99 0.01 95);
+  --secondary-foreground: white;
   --accent: oklch(0.78 0.2 200);
   --accent-foreground: oklch(0.15 0.02 250);
   --muted: oklch(0.96 0.02 95);
@@ -68,7 +70,7 @@
   --chart-3: oklch(0.75 0.2 200);
   --chart-4: oklch(0.85 0.2 100);
   --chart-5: oklch(0.7 0.22 340);
-  --sidebar: oklch(0.99 0.01 95);
+  --sidebar: white;
   --sidebar-foreground: oklch(0.15 0.02 250);
   --sidebar-primary: oklch(0.65 0.18 250);
   --sidebar-primary-foreground: oklch(0.98 0.01 95);

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { motion } from "motion/react";
-import { Sparkles } from "lucide-react";
+import { Clock } from "lucide-react";
 import { TransactionItem } from "@/components/TransactionItem";
 
 type RecentActivityProps = {
@@ -59,14 +59,14 @@ export const RecentActivity: FC<RecentActivityProps> = () => {
       className="mt-8 mb-6 relative z-10"
     >
       <div className="flex items-center space-x-2 mb-6">
-        <h2 className="text-xl font-semibold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+        <h2 className="text-xl font-grotesk font-bold text-black">
           Recent Activity
         </h2>
         <motion.div
           animate={{ rotate: [0, 360] }}
           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
         >
-          <Sparkles className="w-4 h-4 text-purple-500" />
+          <Clock className="w-4 h-4 text-black" />
         </motion.div>
       </div>
 

@@ -1,6 +1,6 @@
 import { useEffect, useState, type FC } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, ArrowUpRight, Sparkles, Zap } from "lucide-react";
+import { X, ArrowUpRight, Sparkle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -51,7 +51,7 @@ export const SendModal: FC<SendModalProps> = ({ isOpen, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-gradient-to-br from-black/60 via-purple-900/20 to-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
             onClick={onClose}
           />
           <motion.div
@@ -59,29 +59,28 @@ export const SendModal: FC<SendModalProps> = ({ isOpen, onClose }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ duration: 0.3, type: "spring", bounce: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 gap-4"
           >
-            <div className="bg-gradient-to-br from-white via-rose-50/50 to-pink-50/50 rounded-3xl shadow-2xl shadow-pink-500/20 w-full max-w-md p-8 space-y-6 border border-pink-100/50 backdrop-blur-sm relative overflow-hidden">
-              {/* Decorative background elements */}
+            <div className="bg-white rounded-3xl w-full max-w-md p-8 space-y-6 relative overflow-hidden">
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-pink-200/30 to-transparent rounded-full blur-2xl"
+                className="absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl"
               />
 
               <div className="flex items-center justify-between relative z-10">
                 <div className="flex items-center space-x-4">
                   <motion.div
-                    className="p-3 bg-gradient-to-br from-rose-100 to-pink-100 text-rose-600 rounded-2xl shadow-lg"
+                    className="p-2 bg-[#C190D1] rounded-xl text-white"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
                     <ArrowUpRight className="w-6 h-6" />
                   </motion.div>
                   <div>
-                    <h2 className="text-2xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+                    <h2 className="text-xl font-grotesk font-bold">
                       Send USDC
                     </h2>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-xs text-[#767676]">
                       Transfer funds securely
                     </p>
                   </div>
@@ -94,34 +93,32 @@ export const SendModal: FC<SendModalProps> = ({ isOpen, onClose }) => {
                     variant="ghost"
                     size="sm"
                     onClick={onClose}
-                    className="p-2 h-auto rounded-xl hover:bg-rose-100"
+                    className="p-2 h-auto rounded-xl hover:bg-gray-200"
                   >
-                    <X className="w-5 h-5 text-rose-600" />
+                    <X className="w-6 h-6 text-black" />
                   </Button>
                 </motion.div>
               </div>
-
-              {/* <SendIllustration /> */}
 
               <div className="space-y-6">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
+                  className="flex flex-col items-start gap-1.5 self-stretch"
                 >
                   <Label
                     htmlFor="recipient"
-                    className="text-gray-700 font-semibold flex items-center space-x-1"
+                    className="text-black font-bold flex items-center space-x-1"
                   >
                     <span>Recipient Address</span>
-                    <Sparkles className="w-3 h-3 text-purple-500" />
                   </Label>
                   <Input
                     id="recipient"
-                    placeholder="8H2uQsm8XJc9..."
+                    placeholder="9Kx4...Q9rT "
                     value={recipient}
                     onChange={(e) => setRecipient(e.target.value)}
-                    className="mt-2 rounded-xl border-purple-200 focus:border-pink-400 focus:ring-pink-400/20 bg-white/80 backdrop-blur-sm"
+                    className="rounded-lg px-4 py-2 bg-white shadow placeholder:text-[#BABABA] text-sm"
                   />
                 </motion.div>
 
@@ -129,31 +126,28 @@ export const SendModal: FC<SendModalProps> = ({ isOpen, onClose }) => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
+                  className="flex flex-col items-start gap-1.5 self-stretch"
                 >
-                  <Label
-                    htmlFor="amount"
-                    className="text-gray-700 font-semibold flex items-center space-x-1"
-                  >
+                  <Label htmlFor="amount" className="text-black font-bold">
                     <span>Amount (USDC)</span>
-                    <Zap className="w-3 h-3 text-yellow-500" />
                   </Label>
-                  <div className="relative mt-2">
+                  <div className="relative w-full">
                     <Input
                       id="amount"
                       type="number"
                       placeholder="0.00"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      className="pr-20 rounded-xl border-purple-200 focus:border-pink-400 focus:ring-pink-400/20 bg-white/80 backdrop-blur-sm"
+                      className="pr-20 px-4 py-2 rounded-lg bg-white shadow placeholder:text-[#BABABA] text-sm"
                     />
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-purple-600">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-black">
                       USDC
                     </div>
                   </div>
-                  <div className="mt-2 text-sm text-gray-600 font-medium">
+                  <div className="text-sm text-[#595959] font-semibold">
                     Balance:{" "}
-                    <span className="text-purple-600">
-                      ${MAIN_WALLET_BALANCE.toFixed(2)} USDC
+                    <span className="text-[#582EE8] text-base font-grotesk font-bold">
+                      ${MAIN_WALLET_BALANCE.toFixed(2)}
                     </span>
                   </div>
                 </motion.div>
@@ -162,19 +156,23 @@ export const SendModal: FC<SendModalProps> = ({ isOpen, onClose }) => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 space-y-3 border border-purple-100"
+                  className="flex flex-col rounded-3xl p-4 gap-4 border"
                 >
-                  <div className="flex justify-between text-sm font-medium">
-                    <span className="text-gray-700">Amount</span>
-                    <span className="text-purple-600">${amount || "0.00"}</span>
+                  <div className="flex justify-between text-sm font-semibold">
+                    <span className="text-[#595959]">Amount</span>
+                    <span className="text-[#582EE8] text-base font-bold">
+                      ${amount || "0.00"}
+                    </span>
                   </div>
-                  <div className="flex justify-between text-sm font-medium">
-                    <span className="text-gray-700">Network Fee</span>
-                    <span className="text-purple-600">$0.01</span>
+                  <div className="flex justify-between text-sm font-semibold">
+                    <span className="text-[#595959]">Network Fee</span>
+                    <span className="text-[#582EE8] text-base font-bold">
+                      $0.01
+                    </span>
                   </div>
-                  <div className="border-t border-purple-200 pt-3 flex justify-between font-bold text-lg">
-                    <span className="text-gray-800">Total</span>
-                    <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  <div className="border-t pt-3 flex justify-between font-bold">
+                    <span className="text-black text-sm">Total</span>
+                    <span className="text-[#582EE8] text-base">
                       ${(parseFloat(amount || "0") + 0.01).toFixed(2)}
                     </span>
                   </div>
@@ -184,14 +182,15 @@ export const SendModal: FC<SendModalProps> = ({ isOpen, onClose }) => {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                className="flex-1"
               >
                 <Button
                   onClick={handleSend}
                   disabled={!isValidAmount || !isValidRecipient || isConfirming}
-                  className="w-full bg-gradient-to-r from-rose-500 via-pink-500 to-fuchsia-500 hover:from-rose-600 hover:via-pink-600 hover:to-fuchsia-600 text-white rounded-2xl h-14 shadow-xl shadow-pink-500/25 hover:shadow-pink-500/40 transition-all duration-300 text-lg font-semibold"
+                  className="w-full bg-[#1C1C1A] hover:bg-gray-600 text-white rounded-full px-6 py-4 h-14 transition-all duration-300 text-lg font-semibold"
                 >
                   {isConfirming ? (
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center gap-1">
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{
@@ -201,13 +200,13 @@ export const SendModal: FC<SendModalProps> = ({ isOpen, onClose }) => {
                         }}
                         className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                       />
-                      <span>Sending Magic...</span>
+                      <span>Sending...</span>
                     </div>
                   ) : (
-                    <div className="flex items-center space-x-2">
-                      <Sparkles className="w-5 h-5" />
-                      <span>Send USDC</span>
-                      <Sparkles className="w-5 h-5" />
+                    <div className="flex items-center gap-1">
+                      <ArrowUpRight className="w-6 h-6" />
+                      <span className="font-grotesk">Send</span>
+                      <Sparkle className="w-6 h-6" fill="white" />
                     </div>
                   )}
                 </Button>
